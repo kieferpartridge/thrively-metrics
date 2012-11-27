@@ -1,0 +1,196 @@
+@import 'reset';
+@import 'bourbon/bourbon';
+@import 'neat/neat';
+
+$lightgrey: darken(white, 10%);
+$medgrey: darken(white, 20%);
+$darkgrey: darken(white, 40%);
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+
+@mixin box-shadow($horizontal, $vertical, $blur, $color) {
+  box-shadow: $horizontal $vertical $blur $color;
+  -webkit-box-shadow: $horizontal $vertical $blur $color;
+  -moz-box-shadow: $horizontal $vertical $blur $color;
+}
+
+* {
+	position: relative;
+}
+
+body {
+  font-family: "Open Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  background: $lightgrey;
+  color: darken(white, 60%);
+  display: inline-block;
+  width: 100%;
+}
+
+h1 {
+	font-size: 2em;
+	line-height: 3em;
+}
+
+h2 {
+	font-size: 1.5em;
+	line-height: 2.5em;
+}
+
+h3 {
+	font-size: 1em;
+	line-height: 2em;
+}
+
+a {
+	color: inherit;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+span {
+
+	&.badge {
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+
+		&.large {
+			font-size: 4em;
+			padding: 20px 0;
+		}
+	}
+}
+
+.wrap {
+	@include outer-container;
+	max-width: none;
+	min-width: 100%;
+	padding: 40px;
+}
+
+.week {
+	@include span-columns(6);
+	@include box-shadow(0,0,4px,$darkgrey);
+	@include border-radius(4px);
+	background: white;
+	margin: 0;
+	z-index: 1;
+	display: block;
+	float: left;
+
+	&.fade {
+		opacity: 0.9;
+	}
+}
+
+h1 {
+	@include outer-container;
+	background: none;
+	text-align: center;
+	border-bottom: 1px solid $medgrey;
+	background: lighten($lightgrey, 6%);
+	padding: 20px 0;
+
+	a {
+		font-size: 0.4em;
+		line-height: 2em;
+		position: absolute;
+		padding: 40px;
+		line-height: 3.6em;
+		top: 0;
+		text-decoration: none;
+
+		&.left {
+			left: 0;
+
+			&::before {
+				content: "\2190";
+				margin-right: 10px;
+			}
+		}
+
+		&.right {
+			right: 0;
+
+			&::before {
+				content: "\2192";
+				margin-left: 10px;
+			}
+		}
+	}
+}
+
+section {
+	@include outer-container;
+	padding: 40px;
+
+	& + section {
+		border-top: 1px solid $lightgrey;
+	}
+}
+
+.grid {
+
+	.block {
+		@include box-shadow(0,0,4px,$darkgrey);
+		@include border-radius(2px);
+		background: white;
+		padding: 20px;
+		min-height: 200px;
+
+		&.blank {
+			@include box-shadow(0,0,0,transparent);
+			padding: 0;
+		}
+
+		h3 {
+			border-bottom: 1px dashed $medgrey;
+			padding-bottom: 20px;
+			text-align: center;
+		}
+	}
+
+	&.two {
+		.block {
+			@include span-columns(6);
+		}
+	}
+
+	&.three {
+		.block {
+			@include span-columns(4);
+		}
+	}
+
+	&.four {
+		.block {
+			@include span-columns(3);
+		}
+	}
+}
+
+.percent {
+	@include box-shadow(0,0,4px,$darkgrey);
+	@include border-radius(50%);
+	background: white;
+	content: "\21E2";
+	font-size: 1.2em;
+	text-align: center;
+	display: block;
+	position: absolute;
+	padding: 20px;
+	width: 80px;
+	height: 80px;
+	line-height: 40px;
+	right: -50px;
+	top: 90px;
+	z-index: 1;
+}
